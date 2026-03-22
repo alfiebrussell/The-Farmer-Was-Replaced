@@ -1,12 +1,17 @@
+import FixLocation
+import Waterdef
+
 while True:
-	change_hat(Hats.Carrot_Hat)
+	change_hat(Hats.Traffic_Cone)
 	if can_harvest():
 		harvest()
-		plant(Entities.Carrot)
+		plant(Entities.Pumpkin)
+		Waterdef.useWater()
 		#get_water()
 		#use_item(Items.Water)
 	else:
-		plant(Entities.Carrot)
+		plant(Entities.Pumpkin)
+		Waterdef.useWater()
 		#get_water()
 		#use_item(Items.Water)
 		

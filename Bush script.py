@@ -1,5 +1,5 @@
 while True:
-	change_hat(Hats.Purple_Hat)
+	change_hat(Hats.Wizard_Hat)
 	if can_harvest():
 		harvest()
 		plant(Entities.Bush)

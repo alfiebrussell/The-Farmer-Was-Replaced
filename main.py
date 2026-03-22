@@ -2,8 +2,8 @@ while True:
 	if can_harvest():
 		harvest()
 		
-	else:
-		plant(Entities.Carrot)
+	#else:
+		#plant(Entities.Carrot)
 	
 		
 

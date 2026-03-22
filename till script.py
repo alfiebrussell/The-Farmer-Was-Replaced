@@ -1,5 +1,5 @@
 while True:
-	if get_ground_type() == Grounds.Soil:
+	if get_ground_type() == Grounds.Grassland:
 		till()
 
 	x = get_pos_x()
