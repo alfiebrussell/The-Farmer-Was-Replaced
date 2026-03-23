@@ -3,17 +3,20 @@ import Waterdef
 
 while True:
 	change_hat(Hats.Traffic_Cone)
+
 	if can_harvest():
 		harvest()
 		plant(Entities.Pumpkin)
-		Waterdef.useWater()
+		Waterdef.useWater(Entities.Pumpkin)
 		#get_water()
 		#use_item(Items.Water)
 	else:
 		plant(Entities.Pumpkin)
-		Waterdef.useWater()
+		Waterdef.useWater(Entities.Pumpkin)
 		#get_water()
 		#use_item(Items.Water)
+	
+		
 		
 
 	x = get_pos_x()

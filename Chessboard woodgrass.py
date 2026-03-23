@@ -1,5 +1,5 @@
 import FixLocation
-import Waterdef
+import WaterdefNoPlant
 
 while True:
 	x = get_pos_x()
@@ -13,22 +13,22 @@ while True:
 		# Trees have Soil.
 		if get_ground_type() == Grounds.Grassland:
 			till()
-			Waterdef.useWater()
+			WaterdefNoPlant.useWater()
 			
 		plant(Entities.Tree)
 		use_item(Items.Water)
 		use_item(Items.Water)
-		Waterdef.useWater()
+		WaterdefNoPlant.useWater()
 		
 	else:
 		# --- GRASSLAND TILE LOGIC ---
 		if can_harvest():
 			harvest()
-			Waterdef.useWater()
+			WaterdefNoPlant.useWater()
 		# If this tile was previously Soil, turn it back to Grassland
 		if get_ground_type() == Grounds.Soil:
 			till()
-			Waterdef.useWater()
+			WaterdefNoPlant.useWater()
 		
 		
 

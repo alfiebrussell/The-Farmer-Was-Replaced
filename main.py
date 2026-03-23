@@ -4,7 +4,7 @@ while True:
 		
 	#else:
 		#plant(Entities.Carrot)
-	
+	unlock(Unlocks.Speed)
 		
 
 	x = get_pos_x()

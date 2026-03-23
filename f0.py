@@ -1,18 +1,16 @@
-import Waterdef
-import FixLocation
-
 
 
 while True:
-	Waterdef.plantType = Entities.Carrot
-	change_hat(Hats.Carrot_Hat)
-	if can_harvest():
-		harvest()
-		plant(Entities.Carrot)
-		Waterdef.useWater(Entities.Carrot)
-	else:
-		plant(Entities.Carrot)
-		Waterdef.useWater(Entities.Carrot)
+	change_hat(Hats.Wizard_Hat)
+	if get_entity_type() != Entities.Bush:	
+		if can_harvest():
+			harvest()
+			plant(Entities.Bush)
+			
+		else:
+			plant(Entities.Bush)
+			
+
 		
 
 	x = get_pos_x()
