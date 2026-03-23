@@ -4,7 +4,6 @@ def treasure_hunt():
 	y = get_pos_y()
 	while True:
 		move(dir)
-		
 		x2 = get_pos_x()
 		y2 = get_pos_y()
 		
@@ -32,7 +31,7 @@ def treasure_hunt():
 		
 		if get_entity_type()==Entities.Treasure:
 			plant(Entities.Bush)
-			substance = get_world_size() * 2**(num_unlocked(Unlocks.Mazes) - 1)
-			use_item(Items.Weird_Substance, substance)
+			#substance = get_world_size() * 100**(num_unlocked(Unlocks.Mazes) - 1)
+			use_item(Items.Weird_Substance, 1000)
 			
 			return 1
