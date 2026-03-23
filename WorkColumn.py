@@ -1,13 +1,9 @@
-
-
-	
 def work_column():
 	size = get_world_size()
 	for _ in range(size):
-		if get_ground_type() == Grounds.Soil:
-			till()
+		
 		move(North)
-
+		
 while True:
 	size = get_world_size()
 	

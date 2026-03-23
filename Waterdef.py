@@ -1,5 +1,5 @@
 def useWater(plantType):
-	while get_water() < 0.75:
+	while get_water() < 0.99:
 		use_item(Items.Water)
 		get_water()
 		break
