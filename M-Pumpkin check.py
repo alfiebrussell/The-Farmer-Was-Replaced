@@ -40,8 +40,7 @@ change_hat(Hats.Traffic_Cone)
 
 while True:
 	size = get_world_size()
-	
-	
+
 	for x in range(size):
 		if not spawn_drone(work_column):
 			work_column() 

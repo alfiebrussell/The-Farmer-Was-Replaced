@@ -5,6 +5,7 @@ def work_column():
 	for _ in range(size):	
 		if can_harvest():
 			harvest()
+			change_hat(Hats.Pumpkin_Hat)
 			plant(Entities.Carrot)
 			Waterdef.useWater(Entities.Carrot)
 		else:
@@ -21,6 +22,7 @@ while True:
 	
 	for x in range(size):
 		if not spawn_drone(work_column):
+			change_hat(Hats.Pumpkin_Hat)
 			work_column() 
 		move(East)
 

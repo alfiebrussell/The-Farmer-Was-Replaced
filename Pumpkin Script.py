@@ -2,7 +2,7 @@ import FixLocation
 import Waterdef
 
 while True:
-	change_hat(Hats.Traffic_Cone)
+	change_hat(Hats.Carrot_Hat)
 
 	if can_harvest():
 		harvest()
