@@ -35,3 +35,4 @@ def treasure_hunt():
 			use_item(Items.Weird_Substance, 100)
 			
 			return 1
+

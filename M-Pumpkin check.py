@@ -1,58 +1,99 @@
-import FixLocation
 import WaterdefNoPlant
+import isfieldready
 
-# Define the logic for a single tile
+
+
 def manage_pumpkin():
-	# If there's a dead pumpkin, we MUST harvest it to replant
-	if get_entity_type() == Entities.Dead_Pumpkin:
-		harvest()
+	# Check tile status
+	entity = get_entity_type()
 	
-	# If the ground is empty, till and plant
-	if get_entity_type() == None:
+	# If dead, harvest and replant immediately
+	if entity == Entities.Dead_Pumpkin:
+		harvest()
 		if get_ground_type() != Grounds.Soil:
 			till()
 		plant(Entities.Pumpkin)
+		WaterdefNoPlant.useWater()
+	
+	# If empty, plant immediately
+	elif entity == None:
+		if get_ground_type() != Grounds.Soil:
+			till()
+		plant(Entities.Pumpkin)
+		WaterdefNoPlant.useWater()
 		
-	# Always ensure it is watered
+	# Always keep it watered
 	WaterdefNoPlant.get_water()
 
-# Define the logic for a drone (or farmer) to do one full column
-def work_column():
-	size = get_world_size()
-	for _ in range(size):
-		manage_pumpkin()
-		move(North)
+def create_task(min_x, max_x):
+	def task():
+		while True:
+			size = get_world_size()
+			
+			#Work strictly within assigned columns
+			for x in range(min_x, max_x + 1):
+				# Move to the specific column
+				while get_pos_x() < x:
+					move(East)
+				while get_pos_x() > x:
+					move(West)
+				
+				# Zig zag through the rows to ensure every tile is checked
+				for i in range(size):
+					y = i
+					if x % 2 != 0:
+						y = (size - 1) - i
+						
+					while get_pos_y() < y:
+						move(North)
+					while get_pos_y() > y:
+						move(South)
+					
+					# Function call to Replant/Water this specific tile
+					manage_pumpkin()
 
-# Function to check if the entire field is full of pumpkins
-def is_field_ready():
-	size = get_world_size()
-	for x in range(size):
-		for y in range(size):
-			#
-			if get_entity_type() != Entities.Pumpkin:
-				return False
-			move(North)
-		move(East)
-	return True
+			# Pumpkin Trigger (Leader Drone Only)
+			if min_x == 0:
+				# Move to 0,0 quickly
+				while get_pos_x() > 0:
+					move(West)
+				while get_pos_y() > 0:
+					move(South)
+				
+			
+				if isfieldready.is_field_ready() == True:
+					harvest()
+				else:
+					continue
+				
+				# Return to start of lane 0 immediately
+				while get_pos_y() > 0:
+					move(South)
+				while get_pos_x() > 0:
+					move(West)
+			
+	return task
 
-# --- Main Execution ---
+# --- Initialize ---
 change_hat(Hats.Traffic_Cone)
 
-while True:
-	size = get_world_size()
+size = get_world_size() # 22
+num_drones = 4
+cols_per_drone = size // num_drones
 
-	for x in range(size):
-		if not spawn_drone(work_column):
-			work_column() 
+for i in range(num_drones):
+	start_x = i * cols_per_drone
+	if i == num_drones - 1:
+		end_x = size - 1
+	else:
+		end_x = (i + 1) * cols_per_drone - 1
+	
+	# Position the player to spawn the drone in its own lane
+	while get_pos_x() < start_x:
 		move(East)
-
-	
-	
-	while get_pos_x() > 0: 
+	while get_pos_x() > start_x:
 		move(West)
-	while get_pos_y() > 0: 
-		move(South)
-	
-	
-	if is_field_ready():
-		harvest()
+		
+	logic = create_task(start_x, end_x)
+	if not spawn_drone(logic):
+		logic()
