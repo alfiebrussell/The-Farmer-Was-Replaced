@@ -1,10 +1,18 @@
+import WaterdefNoPlant
+
 def create_task(min_x, max_x):
 	def task():
 		while True:
 			size = get_world_size()
 			for _ in range(size):
-				if get_ground_type() == Grounds.Soil:
-					till()
+				harvest()
+				WaterdefNoPlant.useWater()
+				if num_items(Items.Fertilizer) > 0:
+						
+						harvest()
+						
+						use_item(Items.Fertilizer)
+						
 				move(North)
 			if get_pos_x() < max_x:
 				move(East)

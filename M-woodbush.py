@@ -78,7 +78,7 @@ def create_workrule(min_x, max_x):
 
 # --- MAIN SETUP ---
 size = get_world_size()
-num_drones = 4
+num_drones = 8
 cols_per_drone = size // num_drones
 
 for i in range(num_drones):
