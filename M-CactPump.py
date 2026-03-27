@@ -27,9 +27,9 @@ def create_workrule(min_x, max_x):
 				# Pumpkin Tile Logic
 				if can_harvest():
 					harvest()
-					plant(Entities.Pumpkin)
+					plant(Entities.Carrot)
 				else:
-					plant(Entities.Pumpkin)
+					plant(Entities.Carrot)
 					WaterdefNoPlant.useWater()
 				
 				if get_ground_type() == Grounds.Grassland:
@@ -69,7 +69,7 @@ def create_workrule(min_x, max_x):
 
 # --- MAIN SETUP ---
 size = get_world_size()
-num_drones = 4
+num_drones = 8
 cols_per_drone = size // num_drones
 
 for i in range(num_drones):

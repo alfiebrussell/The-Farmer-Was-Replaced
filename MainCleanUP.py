@@ -14,7 +14,7 @@ def create_task(min_x, max_x):
 
 size = get_world_size()
 num_drones = 8
-cols_per_drone = size // num_drones
+cols_per_drone = 4 #size // num_drones
 
 for i in range(num_drones):
 	start_x = i * cols_per_drone

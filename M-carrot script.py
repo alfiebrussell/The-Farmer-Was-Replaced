@@ -7,10 +7,19 @@ def work_column():
 			harvest()
 			change_hat(Hats.Pumpkin_Hat)
 			plant(Entities.Carrot)
-			Waterdef.useWater(Entities.Carrot)
+			#Waterdef.useWater(Entities.Carrot)
+			if num_items(Items.Fertilizer) > 0:
+				
+				harvest()
+				plant(Entities.Carrot)
+				use_item(Items.Fertilizer)
 		else:
 			plant(Entities.Carrot)
-			Waterdef.useWater(Entities.Carrot)
+			#Waterdef.useWater(Entities.Carrot)
+			if num_items(Items.Fertilizer) > 0:
+				harvest()
+				plant(Entities.Carrot)
+				use_item(Items.Fertilizer)
 		move(North)
 		
 			

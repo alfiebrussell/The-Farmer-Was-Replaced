@@ -35,11 +35,7 @@ def create_workrule(min_x, max_x):
 					harvest()
 					plant(Entities.Bush)
 					WaterdefNoPlant.useWater()
-					if num_items(Items.Fertilizer) > 0:
-						
-						harvest()
-						plant(Entities.Bush)
-						use_item(Items.Fertilizer)
+
 				# If this tile was previously Grassland, turn it back to Soil
 				if get_ground_type() == Grounds.Soil:
 					till()

@@ -1,8 +1,15 @@
 def is_field_ready():
-	size = get_world_size()
-	for x in range(size):
-		for y in range(size):
-			
-			if get_entity_type() != Entities.Pumpkin:
-				return False
-	return True
+	if get_pos_x() != 0 and get_pos_y() != 0:
+		for i in range (0, get_pos_x()):
+			move(West)
+		for i in range (0, get_pos_y()):
+			move(South)
+	ZeroPosMeasure = measure()
+	move(South)
+	TopPMeasure = measure()
+	move(North)
+	if ZeroPosMeasure == TopPMeasure:
+		return True
+	else:
+		return False
+	
