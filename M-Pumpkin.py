@@ -90,7 +90,7 @@ change_hat(Hats.Cactus_Hat)
 
 size = get_world_size() # 22
 num_drones = 8
-cols_per_drone:float = 4 #size // num_drones
+cols_per_drone:float = size // num_drones
 
 
 
